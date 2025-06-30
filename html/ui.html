@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ZH-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Tom Ronnie</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            font-family: 'Segoe UI', 'Malgun Gothic', 'Arial', 'sans-serif';
+        }
+        #helpbox {
+            position: absolute;
+            top: 1%;
+            left: 1%;
+            background: rgba(20, 20, 20, 0.75);
+            border-radius: 8px;
+            padding: 18px 24px;
+            color: #fff;
+            font-size: 26px;
+            min-width: 220px;
+            box-shadow: 0 2px 12px #0008;
+            letter-spacing: 1px;
+        }
+        .help-line {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .help-key {
+            background: #eee;
+            color: #222;
+            font-weight: bold;
+            border-radius: 4px;
+            padding: 2px 14px;
+            margin-right: 12px;
+            font-size: 20px;
+            border: 1px solid #bbb;
+            box-shadow: 0 1px 2px #0002;
+        }
+    </style>
+</head>
+<body>
+    <div id="helpbox" style="display:none"></div>
+    <script>
+        window.addEventListener('message', function(event) {
+            if (event.data.action === 'show') {
+                const lines = event.data.text.split('\n');
+                let html = '';
+                for (let line of lines) {
+                    // 匹配 ~INPUT_XXX~ 按键
+                    let match = line.match(/~INPUT_([A-Z0-9_]+)~\s*(.*)/);
+                    if (match) {
+                        let key = getKeyName(match[1]);
+                        let text = match[2];
+                        html += `<div class="help-line"><span class="help-key">${key}</span> ${text}</div>`;
+                    } else {
+                        html += `<div class="help-line">${line}</div>`;
+                    }
+                }
+                let helpbox = document.getElementById('helpbox');
+                helpbox.innerHTML = html;
+                helpbox.style.display = 'block';
+                setPosition(helpbox, event.data.position || 'top-left');
+            } else if (event.data.action === 'hide') {
+                document.getElementById('helpbox').style.display = 'none';
+            }
+        });
+
+        // 按键映射（可根据需要补充）
+        function getKeyName(input) {
+            const map = {
+                'VEH_DUCK': 'X',
+                'HUD_SPECIAL': 'Z',
+                'DETONATE': 'G',
+                'PUSH_TO_TALK': 'N',
+                'WEAPON_WHEEL_PREV': 'Z',
+                'SPECIAL_ABILITY_SECONDARY': 'B',
+                'SPRINT': 'S',
+                'MP_TEXT_CHAT_TEAM': 'B'
+            };
+            return map[input] || input;
+        }
+
+        function setPosition(el, pos) {
+            el.style.top = el.style.left = el.style.right = el.style.bottom = 'auto';
+            if (!/center/.test(pos)) el.style.transform = '';
+            switch(pos) {
+                case 'top-left':
+                    el.style.top = '1%'; el.style.left = '1%'; break;
+                case 'top-center':
+                    el.style.top = '1%'; el.style.left = '50%'; el.style.transform = 'translateX(-50%)'; break;
+                case 'top-right':
+                    el.style.top = '1%'; el.style.right = '1%'; break;
+                case 'bottom-left':
+                    el.style.bottom = '1%'; el.style.left = '1%'; break;
+                case 'bottom-center':
+                    el.style.bottom = '1%'; el.style.left = '50%'; el.style.transform = 'translateX(-50%)'; break;
+                case 'bottom-right':
+                    el.style.bottom = '1%'; el.style.right = '1%'; break;
+                default:
+                    el.style.top = '1%'; el.style.left = '1%';
+            }
+        }
+    </script>
+</body>
+</html> 
