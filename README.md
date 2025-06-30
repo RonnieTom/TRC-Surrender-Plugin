@@ -3,7 +3,8 @@
 ## 插件介绍
 这是一个为 FiveM 开发的多状态投降动画插件，允许玩家执行多种投降相关的动作，包括举手投降、跪地和俯卧等姿势。
 
-![Uploading image.png…]()
+![1a5124835e7f3a2171ae46971b0aab99](https://github.com/user-attachments/assets/6528acfa-eb06-4bbb-b013-0b73261063e0)
+
 
 
 ## 主要功能
