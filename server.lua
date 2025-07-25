@@ -1,4 +1,4 @@
- local function printBanner()
+local function printBanner()
     print("--------------------------------------------------------------------------------")
     print("^2  ______               ___                     _")
     print("^2 /_  __/ ___   __ _   / _ \\ ___   ___   ___   (_) ___")
@@ -26,27 +26,27 @@ CreateThread(function()
     -- ...
 end)
 
--- 投降插件服务器脚本
-print("投降插件服务器端已启动")
-
--- 玩家连接时
-AddEventHandler('playerConnecting', function(name, setKickReason, deferrals)
-    print("玩家 " .. name .. " 正在连接...")
-end)
-
--- 玩家断开连接时
-AddEventHandler('playerDropped', function(reason)
-    print("玩家断开连接，原因: " .. reason)
-end)
-
--- 玩家加入时
-AddEventHandler('playerSpawned', function()
-    local playerId = source
-    print("玩家 " .. GetPlayerName(playerId) .. " 已重生")
-end)
-
--- 玩家死亡时
-AddEventHandler('baseevents:onPlayerDied', function(killedBy, reason)
-    local playerId = source
-    print("玩家 " .. GetPlayerName(playerId) .. " 已死亡")
-end) 
+-- -- 投降插件服务器脚本
+-- print("Surrender plugin server has been started 投降插件服务器端已启动")
+-- 
+-- -- 玩家连接时
+-- AddEventHandler('playerConnecting', function(name, setKickReason, deferrals)
+--     print("Player 玩家 " .. name .. " Connecting 正在连接...")
+-- end)
+-- 
+-- -- 玩家断开连接时
+-- AddEventHandler('playerDropped', function(reason)
+--     print("Player disconnected, reason: " .. reason)
+-- end)
+-- 
+-- -- 玩家加入时
+-- AddEventHandler('playerSpawned', function()
+--     local playerId = source
+--     print("Player 玩家 " .. GetPlayerName(playerId) .. " Reborn 已重生")
+-- end)
+-- 
+-- -- 玩家死亡时
+-- AddEventHandler('baseevents:onPlayerDied', function(killedBy, reason)
+--     local playerId = source
+--     print("Player 玩家 " .. GetPlayerName(playerId) .. " Deceased 已死亡")
+-- end) 
