@@ -1,9 +1,11 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'TRC'
-description '投降插件 - 支持举手、跪下、趴下等动作'
-version '1.0.0'
+author 'Tom Ronnie'
+description 'Surrender plugin - supports actions such as raising hands, kneeling, lying down, etc.'
+version '1.0.3'
+
+repository 'https://github.com/RonnieTom/TRC-Surrender-Plugin'
 
 client_scripts {
     'config.lua',
